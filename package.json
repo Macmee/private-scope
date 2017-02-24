@@ -1,0 +1,27 @@
+{
+  "name": "private-scope",
+  "version": "1.0.0",
+  "description": "Give javascript objects a private scope which only internal functions on the object may access (this.private).",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine-node --captureExceptions spec/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Macmee/private-scope.git"
+  },
+  "keywords": [
+    "private",
+    "scope",
+    "encapsulation"
+  ],
+  "author": "= <=> (=)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Macmee/private-scope/issues"
+  },
+  "homepage": "https://github.com/Macmee/private-scope"
+}
