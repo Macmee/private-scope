@@ -1,10 +1,13 @@
-(function(){
+(function() {
+
+  // because this file uses Function.caller it cannot be strict and thus cannot
+  // use const or let as njs 5 and down wont allow it outside strict mode 
 
   var has_private_scope_cache = new WeakMap();
 
   /**
-   * Given a function, determines if said function accesses the this.private prop
-   * @param {Function} fn the function we will scan to determine if it uses private scoping
+   * Given a function, determines if said function accesses the this.private property
+   * @param {Function} fn the function we scan to determine if it uses private scope
    * @return {Boolean} true if given function uses private scope and false if not
    */
 
@@ -25,10 +28,10 @@
    * will return a false positive
    * @param {Object} target_class an instance of a class which we are checking if the function belongs to
    * @param {Number} calls_ago_to_check the amount of functions to crawl back in on the stack to check
-   *                                     and see if it belongs to target_class. Not including this method
-   *                                     call itself. Must be non negative, and 0 refers to the caller of
-   *                                     this method itself.
-   * @return {Boolean} true if given function uses private scope and false if not
+   *                                    and see if it belongs to target_class. Not including this
+   *                                    method call itself. Must be non negative, and 0 refers
+   *                                    to the caller of this method itself.
+   * @return {Boolean} true if given function uses private scope
    */
 
   function class_has_private_scope(target_class, calls_ago_to_check) {
@@ -39,7 +42,7 @@
     // the target class we are looking for
     var target_class_name = target_class.constructor.name;
     // make sure also to consider the case of "this.private" in a constructor by checking "new ClassName"
-    return (class_name == target_class_name) || (-1 < stack_line.indexOf('new ' + target_class_name))
+    return (class_name == target_class_name) || (-1 < stack_line.indexOf('new ' + target_class_name));
   }
 
   var private_scopes = new WeakMap();
@@ -47,7 +50,7 @@
   /**
    * Given an object, return its private scope
    * @param {Object} an object we want to retrieve the private scope for
-   * @return {Object} a hash representing the private scope for an object
+   * @return {Object} hash representing the private scope for an object
    */
 
   function private_scope_for_object(object) {
@@ -62,7 +65,7 @@
 
   /**
    * returns an caller's private scope OR returns undefined if said caller isnt allowed said scope
-   * WARNING: this method depends on 'this' and 'arguments' since its assigned as a getter for 'this.private'
+   * WARNING: this method depends on 'this' and 'arguments' since its assigned as a getter
    * @return {Object} a hash representing the private scope for an object or undefined
    */
 
@@ -79,10 +82,10 @@
   }
 
   Object.defineProperty(Object.prototype, 'private', {
-      enumerable: false,
-      configurable: false,
-      set: function(data) {},
-      get: private_scope_for_caller
+    enumerable: false,
+    configurable: false,
+    set: function(data) {},
+    get: private_scope_for_caller
   });
 
 })();

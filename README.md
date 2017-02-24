@@ -104,5 +104,5 @@ Sure you can do `test.getX()` and `test.setX(12)` here but you can just as easil
 
 ##Are You Crazy?
 
-Probably. And my solution isn't bulletproof. This solution leverages `Function.caller` behind the scenes so things can get funky when that's not available. I'm using a slight workaround for objects created via the `class` keyword too (stack inspection) to determine if a caller belongs to a class due to the absence of `Function.caller` in method created using `class`.
+Probably. And my solution isn't bulletproof. This solution leverages `Function.caller` behind the scenes so things can get funky when that's not available. I'm using a slight workaround for objects created via the `class` keyword too (stack inspection) to determine if a caller belongs to a class due to the absence of `Function.caller` in methods created using `class`.
 
