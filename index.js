@@ -81,11 +81,13 @@
     }
   }
 
-  Object.defineProperty(Object.prototype, 'private', {
-    enumerable: false,
-    configurable: false,
-    set: function(data) {},
-    get: private_scope_for_caller
-  });
+  if (!Object.prototype.hasOwnProperty('private')) {
+    Object.defineProperty(Object.prototype, 'private', {
+      enumerable: false,
+      configurable: false,
+      set: function(data) {},
+      get: private_scope_for_caller
+    });
+  }
 
 })();
