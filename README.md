@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Macmee/private-scope.svg?branch=master)](https://travis-ci.org/Macmee/private-scope)
+
 ##What is this?
 
 This module gives javacript objects a private only scope.
