@@ -1,3 +1,5 @@
+'use strict';
+
 require('../index.js');
 
 describe("Private scope should work for regularly created objects", function() {
