@@ -30,6 +30,8 @@ console.log(test.getX()); // 100
 Classes:
 
 ```javascript
+require('private-scope');
+
 class TestClass {
   getX() {
     return this.private.x;
@@ -49,10 +51,11 @@ console.log(test.private.x); // TypeError: cannot find x of undefined
 console.log(test.getX()); // 100
 ```
 
-
 Prototypes:
 
 ```javascript
+require('private-scope');
+
 function TestClass() {
   this.private.y = 53;
 }
