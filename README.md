@@ -6,7 +6,7 @@ This module gives javacript objects a private only scope.
 
 Regular JavaScript objects:
 
-```
+```javascript
 require('private-scope');
 
 const test = {
@@ -27,7 +27,7 @@ console.log(test.getX()); // 100
 
 Classes:
 
-```
+```javascript
 class TestClass {
   getX() {
     return this.private.x;
@@ -50,7 +50,7 @@ console.log(test.getX()); // 100
 
 Prototypes:
 
-```
+```javascript
 function TestClass() {
   this.private.y = 53;
 }
@@ -79,7 +79,7 @@ console.log(test.getY()); // 53
 
 Lets say you organized your object like so:
 
-```
+```javascript
 const test = {
 
   private: {},
