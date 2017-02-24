@@ -1,4 +1,4 @@
-const has_private_scope_cache = new WeakMap();
+var has_private_scope_cache = new WeakMap();
 
 /**
  * Given a function, determines if said function accesses the this.private prop
@@ -32,15 +32,15 @@ function object_has_private_scope(fn) {
 function class_has_private_scope(target_class, calls_ago_to_check) {
   // attempt to extract the caller's class from the current callstack
   // add 2 because the first line is "Error:" and the second line is this method itself
-  const stack_line = (new Error().stack.split('\n')[2 + calls_ago_to_check]) || '';
-  const class_name = stack_line.match(/at (.*?)\./)[1] || '';
+  var stack_line = (new Error().stack.split('\n')[2 + calls_ago_to_check]) || '';
+  var class_name = stack_line.match(/at (.*?)\./)[1] || '';
   // the target class we are looking for
-  const target_class_name = target_class.constructor.name;
+  var target_class_name = target_class.constructor.name;
   // make sure also to consider the case of "this.private" in a constructor by checking "new ClassName"
   return (class_name == target_class_name) || (-1 < stack_line.indexOf('new ' + target_class_name))
 }
 
-const private_scopes = new WeakMap();
+var private_scopes = new WeakMap();
 
 /**
  * Given an object, return its private scope
@@ -52,7 +52,7 @@ function private_scope_for_object(object) {
   if (private_scopes.has(object)) {
     return private_scopes.get(object);
   } else {
-    const space = {};
+    var space = {};
     private_scopes.set(object, space);
     return space;
   }
@@ -66,9 +66,9 @@ function private_scope_for_object(object) {
 
 function private_scope_for_caller() {
   // find whoever called the method and therefor asked for private scope
-  const caller = arguments.callee.caller;
+  var caller = arguments.callee.caller;
   // assume if caller is undefined that the object is a class
-  const private_scope = caller ? object_has_private_scope(caller) : class_has_private_scope(this, 1);
+  var private_scope = caller ? object_has_private_scope(caller) : class_has_private_scope(this, 1);
   if (private_scope) {
     return private_scope_for_object(this);
   } else {
